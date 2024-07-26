@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class BookSelectOne {
 
 	public static void main(String[] args) {
-		
+		// 미완
 		// AuthorVo authorVo = null;
 
 		// 0. import java.sql.*;
