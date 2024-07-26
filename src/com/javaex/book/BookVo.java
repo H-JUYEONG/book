@@ -6,9 +6,9 @@ public class BookVo {
 	private String pubs;
 	private String pubDate;
 	private int authorId;
-	
+
 	public BookVo() {
-		
+
 	}
 
 	public BookVo(int bookId, String title, String pubs, String pubDate, int authorId) {
@@ -57,6 +57,12 @@ public class BookVo {
 
 	public void setAuthorId(int authorId) {
 		this.authorId = authorId;
+	}
+
+	@Override
+	public String toString() {
+		return "BookVo [bookId=" + bookId + ", title=" + title + ", pubs=" + pubs + ", pubDate=" + pubDate
+				+ ", authorId=" + authorId + "]";
 	}
 
 }

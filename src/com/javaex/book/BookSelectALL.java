@@ -5,11 +5,17 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class BookSelectOne {
+import com.javaex.author.AuthorVo;
+
+public class BookSelectALL {
 
 	public static void main(String[] args) {
-		
+
+		List<Book2Vo> bookList = new ArrayList<Book2Vo>();
+
 		// 0. import java.sql.*;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -35,11 +41,9 @@ public class BookSelectOne {
 			query += " from book b ";
 			query += " left join author a ";
 			query += " on b.author_id = a.author_id ";
-			query += " where b.book_id = ? ";
 
 			// 바인딩
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, 1);
 
 			// 실행
 			rs = pstmt.executeQuery();
@@ -55,7 +59,7 @@ public class BookSelectOne {
 			String desc = rs.getString("author_desc");
 
 			Book2Vo book2Vo = new Book2Vo(bId, title, pubs, pdate, aId, name, desc);
-			System.out.println(book2Vo);
+			bookList.add(book2Vo);
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("error: 드라이버 로딩 실패 - " + e);
@@ -77,6 +81,19 @@ public class BookSelectOne {
 			} catch (SQLException e) {
 				System.out.println("error:" + e);
 			}
+		}
+
+		for (int i = 0; i < bookList.size(); i++) {
+
+			Book2Vo bVo = bookList.get(i);
+
+			System.out.print(bVo.getBookId() + ".  ");
+			System.out.print(bVo.getTitle() + "\t");
+			System.out.print(bVo.getPubs() + "\t");
+			System.out.print(bVo.getPubDate() + "\t");
+			System.out.print(bVo.getAuthorId() + "\t");
+			System.out.print(bVo.getName() + "\t");
+			System.out.println(bVo.getDesc());
 		}
 
 	}

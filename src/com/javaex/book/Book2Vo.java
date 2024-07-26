@@ -79,4 +79,10 @@ public class Book2Vo {
 		this.desc = desc;
 	}
 
+	@Override
+	public String toString() {
+		return "Book2Vo [bookId=" + bookId + ", title=" + title + ", pubs=" + pubs + ", pubDate=" + pubDate
+				+ ", authorId=" + authorId + ", name=" + name + ", desc=" + desc + "]";
+	}
+
 }
