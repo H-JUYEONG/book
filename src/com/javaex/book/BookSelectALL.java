@@ -49,18 +49,18 @@ public class BookSelectALL {
 			rs = pstmt.executeQuery();
 
 			// 4.결과처리
-			rs.next();
-			int bId = rs.getInt("book_id");
-			String title = rs.getString("title");
-			String pubs = rs.getString("pubs");
-			String pdate = rs.getString("pub_date");
-			int aId = rs.getInt("b.author_id");
-			String name = rs.getString("author_name");
-			String desc = rs.getString("author_desc");
-
-			Book2Vo book2Vo = new Book2Vo(bId, title, pubs, pdate, aId, name, desc);
-			bookList.add(book2Vo);
-
+			while(rs.next()) {
+				int bId = rs.getInt("book_id");
+				String title = rs.getString("title");
+				String pubs = rs.getString("pubs");
+				String pdate = rs.getString("pub_date");
+				int aId = rs.getInt("b.author_id");
+				String name = rs.getString("author_name");
+				String desc = rs.getString("author_desc");
+				Book2Vo book2Vo = new Book2Vo(bId, title, pubs, pdate, aId, name, desc);
+				bookList.add(book2Vo);
+			}
+			
 		} catch (ClassNotFoundException e) {
 			System.out.println("error: 드라이버 로딩 실패 - " + e);
 		} catch (SQLException e) {
